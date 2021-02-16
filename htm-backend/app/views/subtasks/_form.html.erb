@@ -1,0 +1,61 @@
+
+<%= form_for @subtask  do |f| %>
+    <% if @subtask.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+        <%= pluralize(@subtask.errors.count, "error") %>
+        prohibited this subtask from being saved:
+      </h2>
+        <ul>
+          <% @subtask.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+   
+   <% @path = request.env['PATH_INFO'] %>
+   <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    </p>
+
+    <p>
+    <%= f.label :estimated_duration %>
+    <%= estimated_select(@subtask, @path) %>
+    </p>
+
+    <p>
+    <%= f.label :actual_duration %>
+    <%= actual_select(@subtask, @path) %>
+    </p>
+
+    <p>
+    <%= f.label :priority %>
+    <%= priority_select(@subtask, @path) %>
+    </p>
+
+    <p>
+    <%= f.label :notes %>
+    <%= f.text_area :notes %>
+    </p>
+
+    <%= f.label :task_title %>
+    <%= task_select(@subtask, @path) %><br>
+    <br />
+
+    <p>Assign at least One Household Member to Subtask</p>
+    <%= f.collection_check_boxes :user_ids, User.all, :id, :username %>
+    <br />
+    <br>
+    <% if request.env['PATH_INFO'] =~ /.*edit.*/ %>
+        <%= f.label :complete, "Mark Complete:" %>
+        <%= f.check_box :complete %>
+    <% end %>
+
+    <br><br>
+  
+
+    <%= f.submit %>
+
+<% end %>

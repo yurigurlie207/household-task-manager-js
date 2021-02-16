@@ -1,0 +1,30 @@
+
+<div class= "taskshow">
+ <p class="notice"><%= flash[:notice] %></p>
+    <h3> <%= @task.title %><h3>
+    <h4>&emsp;This task was created by: <%= User.find_by(id: @task.user_id).username %></h4>
+
+    <p>
+        <ol>
+        <% @task.subtasks.each do |subtask| %>
+            <li><%= link_to subtask.title, subtask_path(subtask) %> :
+                <ul>
+                    <% list_users(subtask).each do |user| %>
+                        <li><%= user %></li>
+                    <%end%>
+                </ul>
+            </li>
+        <% end %>
+        </ol>
+    </p>
+    
+    <br><br>
+    <%= button_to "Edit Task", edit_task_url(), method: :get%> <br>
+
+    <%= button_to "Add New Subtask", new_task_subtask_path(:task_id => @task.id), method: :get %> <br>
+    
+    <%= button_to "Delete Task", task_path(@task), method: :delete %>
+
+    <p><%= link_to 'Home', home_url() %></p>
+</div>
+

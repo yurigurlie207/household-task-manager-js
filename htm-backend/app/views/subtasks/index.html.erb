@@ -1,0 +1,6 @@
+<ol>
+    <% Subtask.all.each do |subtask| %>
+        <li><%= subtask.title %> ( id: <%=subtask.id%>), belongs to task id: <%=subtask.task.id%> <%= subtask.task.title %>
+        </li>
+    <% end %>
+</ol>

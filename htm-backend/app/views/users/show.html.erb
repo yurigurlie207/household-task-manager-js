@@ -1,0 +1,39 @@
+
+<div class= "userhome">
+    <p class="notice"><%= flash[:notice] %></p>
+    <p>
+    <h1>Hello, <%= @user.username %></h1>
+    </p>
+
+    <p>First Name: <%= @user.firstname %> </p>
+    <p>Last Name: <%= @user.lastname %></p>
+    <p>Email: <%= @user.email %></p>
+    <p>Role: <%= @user.role %></p>
+    <p>DOB: <%= @user.birthdate %></p>
+
+    <%= button_to "Update My Profile", edit_user_url(@user), method: :get %> <br>
+
+    <%= button_to "Delete My Profile", user_path(@user), method: :delete %> <br>
+
+    <%= button_to "Log Out", logout_path, method: :post %> 
+
+    <div class = "taskbox">
+    <%= button_to "Create New Task", new_task_url(), method: :get %> <br>
+    <% if Task.all.count > 0 %>
+        <%= button_to "Create New Subtask", new_subtask_url(), method: :get %> <br>
+    <% end %>
+    
+    <h3> You are assigned to the following incompleted subtasks: </h3>
+            <p>
+                <ul>
+                    <% incomplete_usertasks.each do |usertask| %>
+                        <% if usertask != [] %>
+                        <li><%= link_to usertask[0].subtask.task.title, task_path(usertask[0].subtask.task) %> - <%= link_to usertask[0].subtask.title, subtask_path(usertask[0].subtask) %>
+                        ::: assigned on: <%= usertask[0].created_at.strftime(" %b %d %Y") %>
+                        </li>
+                        <%end%>
+                    <%end%>
+                <ul>
+            </p>
+    </div>
+</div>

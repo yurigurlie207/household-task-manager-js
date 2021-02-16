@@ -1,0 +1,11 @@
+<ol>
+    <% Task.all.each do |task| %>
+        <li><%= task.title %> ( id: <%=task.id%>) :
+            <ul>
+                <% task.subtasks.each do |subtask| %>
+                    <li><%= subtask.title %> ( id: <%=subtask.id%>)</li>
+                <%end%>
+            </ul>
+        </li>
+    <% end %>
+</ol>

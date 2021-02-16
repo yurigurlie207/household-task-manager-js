@@ -1,0 +1,5 @@
+<ol>
+    <% User.all.each do |user| %>
+        <li><%= user.username %> ( id: <%=user.id%>) </li>
+    <% end %>
+</ol>
