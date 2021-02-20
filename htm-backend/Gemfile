@@ -27,6 +27,11 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+# CORS is a security feature that only allows API calls from known origins. For example, if someone tried to use some malicious JavaScript to steal your bank information and your bank allowed API calls from anywhere, this could be a bad news bears™️ situation.
+#Let's say your bank is hosted on https://bankofamerica.com. If a clever hacker tried to impersonate you and send a request with an origin of https://couponvirus.org, then ideally, your bank would reject requests from unknown origins such as couponvirus.org and only allow requests from trusted origins or domains like bankofamerica.com
+#when developing your application, the backend and frontend may be served from different origins. Turning on CORS in your backend will allow your frontend to make requests, even though it's on a different origin.
+# gem 'rack-cors'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
