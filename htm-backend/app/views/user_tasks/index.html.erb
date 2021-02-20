@@ -1,5 +1,0 @@
-<ul>
-<% @usertasks.each do |usertask| %>
-    <li> <%= usertask.subtask.title %> - <%= usertask.user.username %> - <%= usertask.comment %> ::: <%= link_to "Edit", edit_user_task_url(usertask) %></li>
-<%end%>
-</ul>
