@@ -17,37 +17,37 @@ task1 = Task.create(title: "Clean House")
 task2 = Task.create(title: "Misc")
 
 #Subtasks assigned to task1
-subtask1 = Subtask.create(title: "clean bathroom")
+subtask1 = Subtask.create(title: "clean bathroom", duration: "60 minutes")
 subtask1.task = task1
-subtask2 = Subtask.create(title: "do dishes")
+subtask2 = Subtask.create(title: "do dishes", duration: "30 minutes")
 subtask2.task = task1
-subtask3 = Subtask.create(title: "vaccuum living room")
+subtask3 = Subtask.create(title: "vaccuum living room", duration: "15 minutes")
 subtask3.task = task1
-subtask4 = Subtask.create(title: "sweep driveway")
+subtask4 = Subtask.create(title: "sweep driveway", duration: "15 minutes")
 subtask4.task = task1
-subtask5 = Subtask.create(title: "vaccuum bedroom")
+subtask5 = Subtask.create(title: "vaccuum bedroom", duration: "10 minutes")
 subtask5.task = task1
-subtask6 = Subtask.create(title: "clean kitchen space")
+subtask6 = Subtask.create(title: "clean kitchen space", duration: "60 minutes")
 subtask6.task = task1
 
 #Subtasks assigned to task2
-subtask7 = Subtask.create(title: "power wash house")
+subtask7 = Subtask.create(title: "power wash house", duration: "90 minutes")
 subtask7.task = task2
-subtask8 = Subtask.create(title: "mow lawn")
+subtask8 = Subtask.create(title: "mow lawn", duration: "30 minutes")
 subtask8.task = task2
-subtask9 = Subtask.create(title: "cook breakfast")
+subtask9 = Subtask.create(title: "cook breakfast", duration: "20 minutes")
 subtask9.task = task2
-subtask10 = Subtask.create(title: "cook lunch")
+subtask10 = Subtask.create(title: "cook lunch", duration: "30 minutes")
 subtask10.task = task2
-subtask11 = Subtask.create(title: "cook dinner")
+subtask11 = Subtask.create(title: "cook dinner", duration: "45 minutes")
 subtask11.task = task2
-subtask12 = Subtask.create(title: "grocery shop")
+subtask12 = Subtask.create(title: "grocery shop", duration: "90 minutes")
 subtask12.task = task2
-subtask13 = Subtask.create(title: "set up yardsale")
+subtask13 = Subtask.create(title: "set up yardsale", duration: "90 minutes")
 subtask13.task = task2
-subtask14 = Subtask.create(title: "marie-kondo kithen space")
+subtask14 = Subtask.create(title: "marie-kondo kithen space", duration: "180 minutes")
 subtask14.task = task2
-subtask15 = Subtask.create(title: "rake leaves")
+subtask15 = Subtask.create(title: "rake leaves", duration: "30 minutes")
 subtask15.task = task2
 
 
