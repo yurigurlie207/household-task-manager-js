@@ -1,4 +1,4 @@
 class SubtaskSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :title, :duration
+  attributes :title, :estimated_duration
 end
