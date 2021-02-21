@@ -10,6 +10,7 @@ class Subtask < ApplicationRecord
   has_many :users, :through => :user_tasks
 
   validates :title, presence: true
+  validates :estimated_duration, presence: true
 
 
 end
