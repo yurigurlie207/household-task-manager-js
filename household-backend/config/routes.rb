@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   get '/test', to: 'application#test'
 
   resources :user_tasks, :only => [:index]
-  resources :subtasks, :only => [:unassigned]
+  resources :subtasks, :only => [:index]
 
 end

@@ -11,10 +11,10 @@
 
 
 
-UserTask.delete_all
-Subtask.delete_all
-Task.delete_all
-User.delete_all
+UserTask.destroy_all
+Subtask.destroy_all
+Task.destroy_all
+User.destroy_all
 
 #Two Tasks
 #1 Clean House
@@ -25,36 +25,50 @@ task2 = Task.create(title: "Misc")
 #Subtasks assigned to task1
 subtask1 = Subtask.create(title: "clean bathroom", estimated_duration: "60 minutes")
 subtask1.task = task1
+subtask1.save
 subtask2 = Subtask.create(title: "do dishes", estimated_duration: "30 minutes")
 subtask2.task = task1
+subtask2.save
 subtask3 = Subtask.create(title: "vaccuum living room", estimated_duration: "15 minutes")
 subtask3.task = task1
+subtask3.save
 subtask4 = Subtask.create(title: "sweep driveway", estimated_duration: "15 minutes")
 subtask4.task = task1
+subtask4.save
 subtask5 = Subtask.create(title: "vaccuum bedroom", estimated_duration: "10 minutes")
 subtask5.task = task1
+subtask5.save
 subtask6 = Subtask.create(title: "clean kitchen space", estimated_duration: "60 minutes")
 subtask6.task = task1
+subtask6.save
 
 #Subtasks assigned to task2
 subtask7 = Subtask.create(title: "power wash house", estimated_duration: "90 minutes")
 subtask7.task = task2
+subtask7.save
 subtask8 = Subtask.create(title: "mow lawn", estimated_duration: "30 minutes")
 subtask8.task = task2
+subtask8.save
 subtask9 = Subtask.create(title: "cook breakfast", estimated_duration: "20 minutes")
 subtask9.task = task2
+subtask9.save
 subtask10 = Subtask.create(title: "cook lunch", estimated_duration: "30 minutes")
 subtask10.task = task2
+subtask10.save
 subtask11 = Subtask.create(title: "cook dinner", estimated_duration: "45 minutes")
 subtask11.task = task2
+subtask11.save
 subtask12 = Subtask.create(title: "grocery shop", estimated_duration: "90 minutes")
 subtask12.task = task2
 subtask13 = Subtask.create(title: "set up yardsale", estimated_duration: "90 minutes")
 subtask13.task = task2
+subtask13.save
 subtask14 = Subtask.create(title: "marie-kondo kithen space", estimated_duration: "180 minutes")
 subtask14.task = task2
+subtask14.save
 subtask15 = Subtask.create(title: "rake leaves", estimated_duration: "30 minutes")
 subtask15.task = task2
+subtask15.save
 
 
 #Three Users - Mom Dad Daughter
