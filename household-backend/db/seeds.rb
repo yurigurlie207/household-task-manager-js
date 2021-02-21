@@ -33,7 +33,7 @@ subtask4 = Subtask.create(title: "sweep driveway", estimated_duration: "15 minut
 subtask4.task = task1
 subtask5 = Subtask.create(title: "vaccuum bedroom", estimated_duration: "10 minutes")
 subtask5.task = task1
-subtask6 = Subtask.create(title: "clean kitchen space", estimiated_duration: "60 minutes")
+subtask6 = Subtask.create(title: "clean kitchen space", estimated_duration: "60 minutes")
 subtask6.task = task1
 
 #Subtasks assigned to task2
