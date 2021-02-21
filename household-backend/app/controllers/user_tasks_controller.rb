@@ -2,7 +2,10 @@ class UserTasksController < ApplicationController
   
   def index
     usertasks = UserTask.all
-    render json: UserTaskSerializer.new(usertasks)
+    options = {
+    include: [:user, :subtask]
+  }
+    render json: UserTaskSerializer.new(usertasks, options)
   end
  
 end
