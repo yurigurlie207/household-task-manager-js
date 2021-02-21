@@ -41,13 +41,13 @@ end
 # {"created_at":"2021-02-20T20:36:18.191Z"},
 # "relationships":{"user":{"data":{"id":"2","type":"user"}},"subtask":{"data":{"id":"6","type":"subtask"}}}}],
 
-# "included":
-# [{"id":"1","type":"subtask","attributes":{"title":"cook breakfast"}},
-# {"id":"1","type":"user","attributes":{"username":"Mom"}},
-# {"id":"2","type":"user","attributes":{"username":"Dad"}},
-# {"id":"3","type":"user","attributes":{"username":"Daughter"}},
-# {"id":"2","type":"subtask","attributes":{"title":"vaccuum bedroom"}},
-# {"id":"3","type":"subtask","attributes":{"title":"grocery shop"}},
-# {"id":"4","type":"subtask","attributes":{"title":"power wash house"}},
-# {"id":"5","type":"subtask","attributes":{"title":"mow lawn"}},
-# {"id":"6","type":"subtask","attributes":{"title":"cook dinner"}}]}
+# "included":[
+#   {"id":"7","type":"subtask","attributes":{"title":"cook breakfast","estimated_duration":"20 minutes"}},
+#   {"id":"4","type":"user","attributes":{"username":"Mom"}},
+#   {"id":"5","type":"user","attributes":{"username":"Dad"}},
+#   {"id":"6","type":"user","attributes":{"username":"Daughter"}},
+#   {"id":"8","type":"subtask","attributes":{"title":"vaccuum bedroom","estimated_duration":"10 minutes"}},
+#   {"id":"9","type":"subtask","attributes":{"title":"grocery shop","estimated_duration":"90 minutes"}},
+#   {"id":"10","type":"subtask","attributes":{"title":"power wash house","estimated_duration":"90 minutes"}},
+#   {"id":"11","type":"subtask","attributes":{"title":"mow lawn","estimated_duration":"30 minutes"}},
+#   {"id":"12","type":"subtask","attributes":{"title":"cook dinner","estimated_duration":"45 minutes"}}]}
