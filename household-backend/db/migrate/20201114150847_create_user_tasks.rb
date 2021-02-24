@@ -3,6 +3,7 @@ class CreateUserTasks < ActiveRecord::Migration[6.0]
     create_table :user_tasks do |t|
       t.belongs_to :user, index: true, foreign_key: true
       t.belongs_to :subtask, index: true, foreign_key: true
+      t.assigned_by :username
       t.text :comment
       t.timestamps null: false
     end
