@@ -81,16 +81,19 @@ daughter = User.create(username: "Daughter", password: "daughter")
 usertask1 = UserTask.new
 usertask1.user = mom
 usertask1.subtask = subtask9
+usertask1.username = "Mom"
 usertask1.save
 
 usertask2 = UserTask.new
 usertask2.user = dad
 usertask2.subtask = subtask9
+usertask2.username = "Mom"
 usertask2.save
 
 usertask3 = UserTask.new
 usertask3.user = daughter
 usertask3.subtask = subtask9
+usertask3.username = "Mom"
 usertask3.save
 
 #a few mom only tasks
@@ -98,8 +101,10 @@ usertask4 = UserTask.new
 usertask5 = UserTask.new
 usertask4.user = mom
 usertask4.subtask = subtask5
+usertask4.username = "Mom"
 usertask5.user = mom
 usertask5.subtask = subtask12
+usertask5.username = "Mom"
 usertask4.save
 usertask5.save
 
@@ -113,6 +118,9 @@ usertask8.user = dad
 usertask6.subtask = subtask7
 usertask7.subtask = subtask8
 usertask8.subtask = subtask11
+usertask6.username = "Mom"
+usertask7.username = "Mom"
+usertask8.username = "Mom"
 usertask6.save
 usertask7.save
 usertask8.save
