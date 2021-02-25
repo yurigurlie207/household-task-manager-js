@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2020_11_29_180210) do
   create_table "user_tasks", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "subtask_id"
+    t.string "assigned_by"
     t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
