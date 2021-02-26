@@ -72,9 +72,9 @@ subtask15.save
 
 
 #Three Users - Mom Dad Daughter
-mom = User.create(username: "Mom", password: "mommom")
-dad = User.create(username: "Dad", password: "daddad")
-daughter = User.create(username: "Daughter", password: "daughter")
+mom = User.create(username: "Mom")
+dad = User.create(username: "Dad")
+daughter = User.create(username: "Daughter")
 
 
 #A task with all users assigned
