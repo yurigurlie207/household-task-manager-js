@@ -16,7 +16,7 @@ function loadAllUsers() {
         }).catch(function(error) {
         console.log(error);
     });
-  };
+  }
 
 function displayUsers(value) {
     // console.log(value.attributes.username)
@@ -30,18 +30,26 @@ function displayUsers(value) {
     div.classList.add("card");
     p.innerText = value.attributes.username + "'s Tasks";
 
-    // loadUserTasks(value.attributes.id)
-};
+    // console.log(value.id)
+    loadUserTasks(value.id)
+}
 
-// function loadUserTasks(userid){
-//     fetch(USERS_URL)
-//     .then(res => res.json())
-//     .then(results => {
-//        results.data.forEach(
-           
-//         displayTrainers)
-//         }).catch(function(error) {
-//             console.log(error);
-//         });
+function loadUserTasks(userid){
+
+    fetch(USERTASKS_URL)
+    .then(res => res.json())
+    .then(results => {
+        //put into an array where the user id is same as user id passed in
+       usertasks = results.data.filter(function(e){
+        return e.relationships.user.data.id === userid
+       })
+  
+        // console.log(usertasks);
+
+        }).catch(function(error) {
+            console.log(error);
+        });
     
-// }
+}
+
+
