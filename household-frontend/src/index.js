@@ -46,7 +46,7 @@ function loadUserTasks(userid){
   
        subtasks = results.included;
         // console.log(usertasks);
-       displayTasks(usertasks, subtasks);
+       displayUserTasks(usertasks, subtasks);
 
         }).catch(function(error) {
             console.log(error);
@@ -56,5 +56,19 @@ function loadUserTasks(userid){
 
 
 function displayUserTasks(usertasks, subtasks){
+    // console.log(usertasks);
+    // console.log(subtasks);
+
+    let subtaskNames = usertasks.map(
+        function(usertask) {
+            // console.log(usertask.relationships.subtask.data.id);
+            let st = subtasks.find(function(subtask){
+                return subtask.id === usertask.relationships.subtask.data.id;
+            });
+            return st.attributes.title;
+        }
+    );
+
+        // console.log(subtaskNames);
 
 }
