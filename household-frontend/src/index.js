@@ -31,7 +31,7 @@ function displayUsers(value) {
     p.innerText = value.attributes.username + "'s Tasks";
 
     // console.log(value.id)
-    loadUserTasks(value.id)
+    loadUserTasks(value.id);
 }
 
 function loadUserTasks(userid){
@@ -44,7 +44,9 @@ function loadUserTasks(userid){
         return e.relationships.user.data.id === userid
        })
   
+       subtasks = results.included;
         // console.log(usertasks);
+       displayTasks(usertasks, subtasks);
 
         }).catch(function(error) {
             console.log(error);
@@ -53,3 +55,6 @@ function loadUserTasks(userid){
 }
 
 
+function displayUserTasks(usertasks, subtasks){
+
+}
