@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :user_tasks, :only => [:index]
   resources :subtasks, :only => [:index]
+  resources :users,  :only => [:index]
   # resources :tasks, :only => [:index]
 
   # root 'static#home', as: 'home'
