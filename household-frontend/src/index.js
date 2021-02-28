@@ -2,11 +2,11 @@ const BASE_URL = "http://localhost:3000"
 const USERS_URL = `${BASE_URL}/users`
 const UNASSIGNED_URL = `${BASE_URL}/subtasks`
 const USERTASKS_URL = `${BASE_URL}/user_tasks`
-const MAIN = document.querySelector('main');
+const MAIN = document.querySelector('main')
 
 document.addEventListener("DOMContentLoaded", function() {
-  loadAllUsers();
-  loadUnassignedSubtasks();
+    loadAllUsers();
+    loadUnassignedSubtasks();
 });
 
 
@@ -99,13 +99,22 @@ function displayUserTasks(usertasks, subtasks, ul){
         }
     );
 
-    
+    // let userTasksIds = usertasks.map(usertask =>() {usertask.id}
+    // console.log(userTasjsIds)
     // console.log(subtaskNames);
 
     subtaskNames.forEach(function(element){
         let li = document.createElement('li');
+        let button = document.createElement('button');
         li.innerText = element;
         ul.appendChild(li);
+        li.appendChild(button);
+        button.innerText = "Unassign";
+        button.addEventListener('click', deleteUserTask);
     });
+
+}
+
+function deleteUserTask(event) {
 
 }
