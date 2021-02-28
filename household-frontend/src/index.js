@@ -122,7 +122,7 @@ function loadUserTasks(userid, ul){
   
        subtasks = results.included;
         // console.log(usertasks);
-       displayUserTasks(usertasks, subtasks, ul);
+       displayUserTasks(usertasksObjs, subtasks, ul);
 
         }).catch(function(error) {
             console.log(error);
@@ -130,15 +130,17 @@ function loadUserTasks(userid, ul){
     
 }
 
-function displayUserTasks(usertasks, subtasks, ul){
+function displayUserTasks(usertasksObjs, subtasks, ul){
     // console.log(usertasks);
     // console.log(subtasks);
 
-    let subtaskNames = usertasks.map(
+    let subtaskNames = usertasksObjs.map(
         function(usertask) {
             // console.log(usertask.relationships.subtask.data.id);
             let st = subtasks.find(function(subtask){
-                return subtask.id === usertask.relationships.subtask.data.id;
+                // console.log(subtask.id)
+                // console.log(usertask.subtask_id)
+                return subtask.id === usertask.subtask_id;
             });
             return st.attributes.title;
         }
@@ -148,13 +150,15 @@ function displayUserTasks(usertasks, subtasks, ul){
     // console.log(userTasjsIds)
     // console.log(subtaskNames);
 
-    subtaskNames.forEach(function(element){
+    subtaskNames.forEach(function(element, index){
         let li = document.createElement('li');
         let button = document.createElement('button');
         li.innerText = element;
         ul.appendChild(li);
         li.appendChild(button);
         button.innerText = "Unassign";
+        console.log(index);
+        button.setAttribute('data-id' , usertasksObjs[index].usertask_id); 
         button.addEventListener('click', deleteUserTask);
     });
 
