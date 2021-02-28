@@ -165,10 +165,18 @@ function displayUserTasks(usertasksObjs, subtasks, ul){
 
 function deleteUserTask(event) {
     const usertaskId = event.target.dataset.usertaskId;
-    console.log(usertaskId);
+    // console.log(usertaskId);
 
-  
-    
+    fetch(USERTASKS_URL +`/${usertaskId}`, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    })
+    .then(event.target.parentElement.remove())
+    .catch(err => console.log(err))
+        
 }
 
    
