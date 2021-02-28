@@ -84,7 +84,6 @@ function loadUserTasks(userid, ul){
     
 }
 
-
 function displayUserTasks(usertasks, subtasks, ul){
     // console.log(usertasks);
     // console.log(subtasks);
@@ -118,3 +117,58 @@ function displayUserTasks(usertasks, subtasks, ul){
 function deleteUserTask(event) {
 
 }
+
+//This will hold usertask objects that can be deleted
+class assignedUserTask {
+    constructor(usertask_id, subtaskName) {
+      this._usertask_id = usertask_id;
+      this._subtaskName = subtaskName;
+    }
+
+    get usertask_id() {
+        this._usertask_id;
+      }
+
+    get subtaskName() {
+        this._subtaskName;
+    }
+  }
+
+  //This will hold usertask objects that will be added
+  class unassignedUserTask {
+    constructor(subtask_id, subtaskName, user_ids) {
+      this._subtask_id = subtask_id;
+      this._subtaskName = subtaskName;
+      this._user_ids = user_ids;
+    }
+
+    get user_ids() {
+        this._usertask_ids;
+      }
+
+    get subtask_id() {
+        this._subtask_id;
+    }
+
+    get subtaskName() {
+        this._subtaskName;
+    }
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
