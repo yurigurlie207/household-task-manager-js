@@ -120,9 +120,10 @@ function deleteUserTask(event) {
 
 //This will hold usertask objects that can be deleted
 class assignedUserTask {
-    constructor(usertask_id, subtaskName) {
+    constructor(usertask_id, subtaskName, subtask_id) {
       this._usertask_id = usertask_id;
       this._subtaskName = subtaskName;
+      this._subtask_id = subtask_id;
     }
 
     get usertask_id() {
@@ -132,6 +133,11 @@ class assignedUserTask {
     get subtaskName() {
         this._subtaskName;
     }
+
+    get subtask_id() {
+        this._subtask_id;
+    }
+
   }
 
   //This will hold usertask objects that will be added
