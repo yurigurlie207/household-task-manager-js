@@ -6,7 +6,37 @@ const MAIN = document.querySelector('main');
 
 document.addEventListener("DOMContentLoaded", function() {
   loadAllUsers();
+  loadUnassignedSubtasks();
 });
+
+
+function loadUnassignedSubtasks() {
+
+    let div = document.createElement('div');
+    let p = document.createElement('p');
+    let ul = document.createElement('ul');
+    MAIN.appendChild(div);
+    div.appendChild(p);
+    div.appendChild(ul);
+    div.classList.add("subtask");
+    p.innerText = "Unassigned Tasks:";
+
+    fetch(UNASSIGNED_URL)
+    .then(res => res.json())
+    .then(results => {
+       results.data.forEach(displaySubtasks, ul)
+        }).catch(function(error) {
+        console.log(error);
+    });
+  }
+
+  function displaySubtasks(value){
+      console.log(value.attributes.title)
+      let li = document.createElement('li');
+        li.innerText = value.attributes.title;
+        this.appendChild(li);
+  }
+
 
 function loadAllUsers() {
     fetch(USERS_URL)
@@ -27,14 +57,14 @@ function displayUsers(value) {
     MAIN.appendChild(div);
     div.appendChild(p);
     div.appendChild(ul);
-    div.classList.add("card");
-    p.innerText = value.attributes.username + "'s Tasks";
+    div.classList.add("user");
+    p.innerText = value.attributes.username + "'s Tasks for Today: ";
 
     // console.log(value.id)
-    loadUserTasks(value.id);
+    loadUserTasks(value.id, ul);
 }
 
-function loadUserTasks(userid){
+function loadUserTasks(userid, ul){
 
     fetch(USERTASKS_URL)
     .then(res => res.json())
@@ -46,7 +76,7 @@ function loadUserTasks(userid){
   
        subtasks = results.included;
         // console.log(usertasks);
-       displayUserTasks(usertasks, subtasks);
+       displayUserTasks(usertasks, subtasks, ul);
 
         }).catch(function(error) {
             console.log(error);
@@ -55,7 +85,7 @@ function loadUserTasks(userid){
 }
 
 
-function displayUserTasks(usertasks, subtasks){
+function displayUserTasks(usertasks, subtasks, ul){
     // console.log(usertasks);
     // console.log(subtasks);
 
@@ -69,6 +99,13 @@ function displayUserTasks(usertasks, subtasks){
         }
     );
 
-        // console.log(subtaskNames);
+    
+    // console.log(subtaskNames);
+
+    subtaskNames.forEach(function(element){
+        let li = document.createElement('li');
+        li.innerText = element;
+        ul.appendChild(li);
+    });
 
 }

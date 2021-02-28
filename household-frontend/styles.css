@@ -1,18 +1,26 @@
 main {
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     grid-gap: 20px;
     padding-top: 10px;
     padding-bottom: 30px;
   }
   
 
-div.card {
+div.user {
     background-color: #eeeeee;
     height: 250px;
     width: 300px;
-    box-shadow: 10px 10px grey;
-    padding: 10px;
+    padding: 30px;
     border-radius: 10px;
   }
+
+  div.subtask {
+    /* grid-column: span 3; */
+    grid-row: span 3;
+    background-color: #eeeeee;
+    border-radius: 10px;
+    padding: 30px;
+}
+    
