@@ -51,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 function loadUnassignedSubtasks() {
-
     let div = document.createElement('div');
     let p = document.createElement('p');
     let ul = document.createElement('ul');
@@ -157,20 +156,22 @@ function displayUserTasks(usertasksObjs, subtasks, ul){
         ul.appendChild(li);
         li.appendChild(button);
         button.innerText = "Unassign";
-        console.log(index);
-        button.setAttribute('data-id' , usertasksObjs[index].usertask_id); 
+        // console.log(index);
+        button.setAttribute('data-usertask-id' , usertasksObjs[index].usertask_id); 
         button.addEventListener('click', deleteUserTask);
     });
 
 }
 
 function deleteUserTask(event) {
+    const usertaskId = event.target.dataset.usertaskId;
+    console.log(usertaskId);
 
+  
+    
 }
 
-
-
-
+   
 
 
 
