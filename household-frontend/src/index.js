@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 function loadUnassignedSubtasks() {
+
     let div = document.createElement('div');
     let p = document.createElement('p');
     let ul = document.createElement('ul');
@@ -70,7 +71,7 @@ function loadUnassignedSubtasks() {
   }
 
   function displaySubtasks(value){
-      console.log(value.attributes.title)
+    //   console.log(value.attributes.title)
       let li = document.createElement('li');
         li.innerText = value.attributes.title;
         this.appendChild(li);
@@ -174,14 +175,20 @@ function deleteUserTask(event) {
             'Accept': 'application/json'
         }
     })
-    .then(event.target.parentElement.remove())
+    .then( function() {
+        event.target.parentElement.remove()
+        }
+    )
     .catch(err => console.log(err))
-        
+
+
+
 }
 
    
-
-
+//maybe put this in a different button
+// document.querySelectorAll(".subtask").forEach(el => el.remove())
+// loadUnassignedSubtasks();
 
 
 
