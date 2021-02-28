@@ -4,6 +4,46 @@ const UNASSIGNED_URL = `${BASE_URL}/subtasks`
 const USERTASKS_URL = `${BASE_URL}/user_tasks`
 const MAIN = document.querySelector('main')
 
+//This will hold usertask objects that can be deleted
+class UserTaskAssigned {
+    constructor(usertask_id, subtask_id) {
+      this._usertask_id = usertask_id;
+      this._subtask_id = subtask_id;
+    }
+
+    get usertask_id() {
+        return this._usertask_id;
+      }
+
+    get subtask_id() {
+        return this._subtask_id;
+    }
+
+  }
+
+  //This will hold usertask objects that will be added
+  class UserTaskUnassigned {
+    constructor(subtask_id, subtaskName, user_ids) {
+      this._subtask_id = subtask_id;
+      this._subtaskName = subtaskName;
+      this._user_ids = user_ids;
+    }
+
+    get user_ids() {
+        this._usertask_ids;
+      }
+
+    get subtask_id() {
+        this._subtask_id;
+    }
+
+    get subtaskName() {
+        this._subtaskName;
+    }
+
+  }
+
+
 document.addEventListener("DOMContentLoaded", function() {
     loadAllUsers();
     loadUnassignedSubtasks();
@@ -73,6 +113,12 @@ function loadUserTasks(userid, ul){
        usertasks = results.data.filter(function(e){
         return e.relationships.user.data.id === userid
        })
+
+       let usertasksObjs = usertasks.map( function(usertask) {
+            return new UserTaskAssigned(usertask.id, usertask.relationships.subtask.data.id);
+       })
+       
+    //    console.log(usertasksObjs[0].subtask_id);
   
        subtasks = results.included;
         // console.log(usertasks);
@@ -118,49 +164,6 @@ function deleteUserTask(event) {
 
 }
 
-//This will hold usertask objects that can be deleted
-class assignedUserTask {
-    constructor(usertask_id, subtaskName, subtask_id) {
-      this._usertask_id = usertask_id;
-      this._subtaskName = subtaskName;
-      this._subtask_id = subtask_id;
-    }
-
-    get usertask_id() {
-        this._usertask_id;
-      }
-
-    get subtaskName() {
-        this._subtaskName;
-    }
-
-    get subtask_id() {
-        this._subtask_id;
-    }
-
-  }
-
-  //This will hold usertask objects that will be added
-  class unassignedUserTask {
-    constructor(subtask_id, subtaskName, user_ids) {
-      this._subtask_id = subtask_id;
-      this._subtaskName = subtaskName;
-      this._user_ids = user_ids;
-    }
-
-    get user_ids() {
-        this._usertask_ids;
-      }
-
-    get subtask_id() {
-        this._subtask_id;
-    }
-
-    get subtaskName() {
-        this._subtaskName;
-    }
-
-  }
 
 
 
