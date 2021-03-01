@@ -4,6 +4,7 @@ const UNASSIGNED_URL = `${BASE_URL}/subtasks`
 const USERTASKS_URL = `${BASE_URL}/user_tasks`
 const MAIN = document.querySelector('main')
 
+
 //This will hold usertask objects that can be deleted
 class UserTaskAssigned {
     constructor(usertask_id, subtask_id) {
@@ -37,7 +38,6 @@ class UserTaskAssigned {
 
   }
 
-
   //This will hold usertask objects that will be added
   class UserTaskUnassigned {
     constructor(subtask_id, subtaskName, user_ids) {
@@ -62,8 +62,9 @@ class UserTaskAssigned {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    loadAllUsers();
-    loadUnassignedSubtasks();
+   loadAllUsers();
+   loadUnassignedSubtasks();
+  
 });
 
 
@@ -99,18 +100,24 @@ function loadUnassignedSubtasks() {
       this.appendChild(li);
       li.appendChild(button);
 
-      addUserDropdown(li);
+    //   addUserDropdown(li);
 
   }
 
-  function addUserDropdown(li){
-    let form = document.createElement('form');
-    let select = document.createElement('select');
+  //function addUserDropdown(li){
+ //   let form = document.createElement('form');
+  //  let select = document.createElement('select');
    
-    li.appendChild(form);
-    form.appendChild(select)
+  //  li.appendChild(form);
+  //  form.appendChild(select);
 
-
+    // userObjs.forEach(function(user){
+    //     let option = document.createElement('option');
+    //     option.setAttribute('data-user-id' , user.id);
+    //     option.innerText = user.username;
+    //     select.appendChild(option);
+    //  })
+        
     //   <form id="myForm">
     //     <select id="mySelect">
     //        <option>One</option>
@@ -125,18 +132,20 @@ function loadUnassignedSubtasks() {
     //        document.getElementById("mySelect").multiple = true;
     //     }
     //  </script>
-  }
+ // }
 
 
 function loadAllUsers() {
+
     fetch(USERS_URL)
     .then(res => res.json())
-    .then(results => {
-       results.data.forEach(displayUsers)
-        const userObjs = results.data.map( function(user) {
-                return new User(user.id, user.username);
-             })
-        }).catch(function(error) {
+    .then( function(results) {
+        results.data.forEach(displayUsers)
+        var userObjs = results.data.map( function(user) { 
+                       return new User(user.id, user.attributes.username);
+         });
+        //  console.log(userObjs)     
+    }).catch(function(error) {
         console.log(error);
     });
 
@@ -219,7 +228,7 @@ function displayUserTasks(usertasksObjs, subtasks, ul){
 }
 
 function deleteUserTask(event) {
-    const usertaskId = event.target.dataset.usertaskId;
+    let usertaskId = event.target.dataset.usertaskId;
     // console.log(usertaskId);
 
     fetch(USERTASKS_URL +`/${usertaskId}`, {
