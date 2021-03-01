@@ -62,11 +62,9 @@ class UserTaskAssigned {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-   loadAllUsers();
+   loadAllUsers()
    loadUnassignedSubtasks();
-  
-});
-
+}); //the end of on dom loaded
 
 function loadUnassignedSubtasks() {
 
@@ -100,23 +98,24 @@ function loadUnassignedSubtasks() {
       this.appendChild(li);
       li.appendChild(button);
 
-    //   addUserDropdown(li);
+     addUserDropdown(li);
 
   }
 
-  //function addUserDropdown(li){
- //   let form = document.createElement('form');
-  //  let select = document.createElement('select');
+  function addUserDropdown(li){
+   let form = document.createElement('form');
+   let select = document.createElement('select');
    
-  //  li.appendChild(form);
-  //  form.appendChild(select);
+   li.appendChild(form);
+   form.appendChild(select);
+  
+   let dropdownHTML = `
+    <option data-id="1">Mom</option>
+    <option data-id="2">Dad</option>
+    <option data-id="3">Daughter</option>
+    `;
 
-    // userObjs.forEach(function(user){
-    //     let option = document.createElement('option');
-    //     option.setAttribute('data-user-id' , user.id);
-    //     option.innerText = user.username;
-    //     select.appendChild(option);
-    //  })
+    select.insertAdjacentHTML('beforeend', dropdownHTML);
         
     //   <form id="myForm">
     //     <select id="mySelect">
@@ -132,19 +131,15 @@ function loadUnassignedSubtasks() {
     //        document.getElementById("mySelect").multiple = true;
     //     }
     //  </script>
- // }
+ }
 
 
 function loadAllUsers() {
 
     fetch(USERS_URL)
     .then(res => res.json())
-    .then( function(results) {
-        results.data.forEach(displayUsers)
-        var userObjs = results.data.map( function(user) { 
-                       return new User(user.id, user.attributes.username);
-         });
-        //  console.log(userObjs)     
+    .then(results => {
+        results.data.forEach(displayUsers)   
     }).catch(function(error) {
         console.log(error);
     });
@@ -254,7 +249,6 @@ function deleteUserTask(event) {
 function assignUserTasks(event){
 
 }
-
 
 
 
