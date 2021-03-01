@@ -21,6 +21,23 @@ class UserTaskAssigned {
 
   }
 
+  class User {
+    constructor(user_id, username) {
+      this._user_id = user_id;
+      this._username = username;
+    }
+
+    get user_id() {
+        return this._user_id;
+      }
+
+    get username() {
+        return this._username;
+    }
+
+  }
+
+
   //This will hold usertask objects that will be added
   class UserTaskUnassigned {
     constructor(subtask_id, subtaskName, user_ids) {
@@ -30,15 +47,15 @@ class UserTaskAssigned {
     }
 
     get user_ids() {
-        this._usertask_ids;
+        return this._usertask_ids;
       }
 
     get subtask_id() {
-        this._subtask_id;
+        return this._subtask_id;
     }
 
     get subtaskName() {
-        this._subtaskName;
+        return this._subtaskName;
     }
 
   }
@@ -73,8 +90,41 @@ function loadUnassignedSubtasks() {
   function displaySubtasks(value){
     //   console.log(value.attributes.title)
       let li = document.createElement('li');
-        li.innerText = value.attributes.title;
-        this.appendChild(li);
+      let button = document.createElement('button');
+      button.innerText = "Assign User(s)";
+      // console.log(index);
+      button.setAttribute('data-subtask-id' , value.id); 
+      button.addEventListener('click', assignUserTasks);
+      li.innerText = value.attributes.title;
+      this.appendChild(li);
+      li.appendChild(button);
+
+      addUserDropdown(li);
+
+  }
+
+  function addUserDropdown(li){
+    let form = document.createElement('form');
+    let select = document.createElement('select');
+   
+    li.appendChild(form);
+    form.appendChild(select)
+
+
+    //   <form id="myForm">
+    //     <select id="mySelect">
+    //        <option>One</option>
+    //        <option>Two</option>
+    //        <option>Three</option>
+    //     </select>
+    //     <input type="button" onclick="multipleFunc()" value="Select multiple options">
+    //  </form>
+    //  <p>Press CTRL and click above button to select multiple options at once.</p>
+    //  <script>
+    //     function multipleFunc() {
+    //        document.getElementById("mySelect").multiple = true;
+    //     }
+    //  </script>
   }
 
 
@@ -83,9 +133,13 @@ function loadAllUsers() {
     .then(res => res.json())
     .then(results => {
        results.data.forEach(displayUsers)
+        const userObjs = results.data.map( function(user) {
+                return new User(user.id, user.username);
+             })
         }).catch(function(error) {
         console.log(error);
     });
+
   }
 
 function displayUsers(value) {
@@ -181,8 +235,6 @@ function deleteUserTask(event) {
     )
     .catch(err => console.log(err))
 
-
-
 }
 
    
@@ -190,7 +242,9 @@ function deleteUserTask(event) {
 // document.querySelectorAll(".subtask").forEach(el => el.remove())
 // loadUnassignedSubtasks();
 
+function assignUserTasks(event){
 
+}
 
 
 
