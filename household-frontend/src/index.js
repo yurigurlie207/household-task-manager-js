@@ -89,49 +89,27 @@ function loadUnassignedSubtasks() {
   function displaySubtasks(value){
     //   console.log(value.attributes.title)
       let li = document.createElement('li');
-      let button = document.createElement('button');
-      button.innerText = "Assign User(s)";
-      // console.log(index);
-      button.setAttribute('data-subtask-id' , value.id); 
-      button.addEventListener('click', assignUserTasks);
       li.innerText = value.attributes.title;
-      this.appendChild(li);
-      li.appendChild(button);
-
-     addUserDropdown(li);
-
+      this.appendChild(li)
+      let select = document.createElement('select');
+      li.appendChild(select);
+  
+      let dropdownHTML = `
+       <option data-id="1">Mom</option>
+       <option data-id="2">Dad</option>
+       <option data-id="3">Daughter</option>
+       `;
+   
+       select.insertAdjacentHTML('beforeend', dropdownHTML);
+       let button = document.createElement('button');
+       select.after(button);
+       select.multiple = true;
+       button.innerText = "Assign User(s)";
+       button.setAttribute('data-subtask-id' , value.id); 
+       button.addEventListener('click', assignUserTasks);
   }
 
-  function addUserDropdown(li){
-   let form = document.createElement('form');
-   let select = document.createElement('select');
-   
-   li.appendChild(form);
-   form.appendChild(select);
-  
-   let dropdownHTML = `
-    <option data-id="1">Mom</option>
-    <option data-id="2">Dad</option>
-    <option data-id="3">Daughter</option>
-    `;
 
-    select.insertAdjacentHTML('beforeend', dropdownHTML);
-        
-    //   <form id="myForm">
-    //     <select id="mySelect">
-    //        <option>One</option>
-    //        <option>Two</option>
-    //        <option>Three</option>
-    //     </select>
-    //     <input type="button" onclick="multipleFunc()" value="Select multiple options">
-    //  </form>
-    //  <p>Press CTRL and click above button to select multiple options at once.</p>
-    //  <script>
-    //     function multipleFunc() {
-    //        document.getElementById("mySelect").multiple = true;
-    //     }
-    //  </script>
- }
 
 
 function loadAllUsers() {
@@ -247,7 +225,7 @@ function deleteUserTask(event) {
 // loadUnassignedSubtasks();
 
 function assignUserTasks(event){
-
+    
 }
 
 

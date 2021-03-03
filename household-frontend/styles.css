@@ -23,11 +23,20 @@ div.user {
     background-color: #eeeeee;
     border-radius: 10px;
     padding: 30px;
+    max-height:600px;
 }
     
 button {
   border-radius: 10px;
   background-color: #f7d7e7;
+  margin: 2px;
+  margin-left: 20px;
+  border: 0px;
+}
+
+button.multiple {
+  border-radius: 10px;
+  background-color: rgb(209, 207, 207);
   margin: 2px;
   margin-left: 20px;
   border: 0px;
