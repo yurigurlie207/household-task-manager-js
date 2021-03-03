@@ -95,9 +95,9 @@ function loadUnassignedSubtasks() {
       li.appendChild(select);
   
       let dropdownHTML = `
-       <option data-id="1">Mom</option>
-       <option data-id="2">Dad</option>
-       <option data-id="3">Daughter</option>
+       <option data-user-id="1">Mom</option>
+       <option data-user-id="2">Dad</option>
+       <option data-user-id="3">Daughter</option>
        `;
    
        select.insertAdjacentHTML('beforeend', dropdownHTML);
@@ -225,10 +225,29 @@ function deleteUserTask(event) {
 // loadUnassignedSubtasks();
 
 function assignUserTasks(event){
+    console.log(event.target.dataset.subtaskId);
+    
     
 }
 
+// function myFunction() {
+//     var element = document.querySelectorAll('.example p');
+//     for(i = 0; i <= element.length; i++) {
+//       element[i].style.backgroundColor = 'red';
+//     }
+//   }
+  
+// document.getElementById('submit').onclick = function() {
+//   var selected = [];
+//   for (var option of document.getElementById('pets').options) {
+//     if (option.selected) {
+//       selected.push(option.value);
+//     }
+//   }
+//   alert(selected);
+// }
 
+// https://www.techiedelight.com/get-selected-values-multi-select-dropdown-javascript/
 
 
 
