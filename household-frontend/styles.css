@@ -24,6 +24,16 @@ div.user {
     border-radius: 10px;
     padding: 30px;
     max-height:600px;
+    /* overflow: hidden; */
+    overflow: scroll;
+}
+div.subtask li {
+  height: 100px;
+}
+
+select {
+  margin-left: 20px;
+  margin-top: 50px;
 }
     
 button {
