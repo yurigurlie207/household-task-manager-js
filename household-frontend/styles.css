@@ -31,11 +31,11 @@ div.subtask li {
   height: 100px;
 }
 
-select {
+/* select {
   margin-left: 20px;
   margin-top: 50px;
 }
-    
+     */
 button {
   border-radius: 10px;
   background-color: #f7d7e7;

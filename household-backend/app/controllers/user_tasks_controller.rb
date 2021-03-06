@@ -9,6 +9,8 @@ class UserTasksController < ApplicationController
   end
 
   def create
+    @subtask = Subtask.find(params[:id])
+    @subtask.user_ids = subtask_params[:user_ids]
   end
 
 
@@ -24,3 +26,17 @@ class UserTasksController < ApplicationController
   end
  
 end
+
+
+# def create
+#   @subtask = Subtask.new(subtask_params.except(:user_ids))
+#   @subtask.complete = false
+  
+#   if @subtask.save
+#    @subtask.user_ids = subtask_params[:user_ids]
+#    redirect_to @subtask
+# else
+#   render :new
+# end
+# end
+

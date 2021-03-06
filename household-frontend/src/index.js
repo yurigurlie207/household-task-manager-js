@@ -91,22 +91,23 @@ function loadUnassignedSubtasks() {
       let li = document.createElement('li');
       li.innerText = value.attributes.title;
       this.appendChild(li)
-      let select = document.createElement('select');
-      li.appendChild(select);
   
-      let dropdownHTML = `
-       <option value='1' data-user-id="1">Mom</option>
-       <option value='2' data-user-id="2">Dad</option>
-       <option value='3' data-user-id="3">Daughter</option>
+      let formHTML = `
+       <form class="new_subtask" id="new_subtask" action="/subtasks" accept-charset="UTF-8" method="post">
+        <select multiple>
+        <option name="subtask[user_ids][]" value='1' data-user-id="1">Mom</option>
+        <option name="subtask[user_ids][]" value='2' data-user-id="2">Dad</option>
+        <option name="subtask[user_ids][]" value='3' data-user-id="3">Daughter</option>
+        <select>
+        <input type="submit" name="commit" value="Assign User(s)" data-disable-with="Create Subtask" />
+       </form>
        `;
    
-       select.insertAdjacentHTML('beforeend', dropdownHTML);
-       let button = document.createElement('button');
-       select.after(button);
-       select.multiple = true;
-       button.innerText = "Assign User(s)";
-       button.setAttribute('data-subtask-id' , value.id); 
-       button.addEventListener('click', assignUserTasks);
+       li.insertAdjacentHTML('beforeend', formHTML);
+       let submitButton = this.querySelector("input[type=submit]");
+        submitButton.setAttribute('data-subtask-id' , value.id); 
+        submitButton.addEventListener('click', assignUserTasks);
+  
   }
 
 
@@ -225,36 +226,11 @@ function deleteUserTask(event) {
 // loadUnassignedSubtasks();
 
 function assignUserTasks(event){
-    console.log(event.target.dataset.subtaskId);
-    
+    // console.log(event.target.dataset.subtaskId);
+    event.preventDefault();
     let selectList = this.previousElementSibling;
     let checked = selectList.querySelectorAll(':checked');
     let selectedUsers = [...checked].map(option => option.dataset.userId);
-      
+    // alert(selectedUsers);
 }
-
-// function myFunction() {
-//     var element = document.querySelectorAll('.example p');
-//     for(i = 0; i <= element.length; i++) {
-//       element[i].style.backgroundColor = 'red';
-//     }
-//   }
-  
-// document.getElementById('submit').onclick = function() {
-//   var selected = [];
-//   for (var option of document.getElementById('pets').options) {
-//     if (option.selected) {
-//       selected.push(option.value);
-//     }
-//   }
-//   alert(selected);
-// }
-
-// https://www.techiedelight.com/get-selected-values-multi-select-dropdown-javascript/
-
-
-
-
-
-
 
