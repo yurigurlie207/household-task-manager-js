@@ -95,9 +95,9 @@ function loadUnassignedSubtasks() {
       li.appendChild(select);
   
       let dropdownHTML = `
-       <option data-user-id="1">Mom</option>
-       <option data-user-id="2">Dad</option>
-       <option data-user-id="3">Daughter</option>
+       <option value='1' data-user-id="1">Mom</option>
+       <option value='2' data-user-id="2">Dad</option>
+       <option value='3' data-user-id="3">Daughter</option>
        `;
    
        select.insertAdjacentHTML('beforeend', dropdownHTML);
@@ -227,7 +227,10 @@ function deleteUserTask(event) {
 function assignUserTasks(event){
     console.log(event.target.dataset.subtaskId);
     
-    
+    let selectList = this.previousElementSibling;
+    let checked = selectList.querySelectorAll(':checked');
+    let selectedUsers = [...checked].map(option => option.dataset.userId);
+      
 }
 
 // function myFunction() {
