@@ -24,7 +24,7 @@ function loadUnassignedSubtasks() {
 
     let userDiv =  document.querySelectorAll('.user');
     if (userDiv.length > 1) {
-        div.insertBefore();
+        MAIN.insertBefore(div, MAIN.childNodes[0]);
     }
     else {
         MAIN.appendChild(div);
