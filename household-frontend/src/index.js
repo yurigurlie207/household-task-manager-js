@@ -68,19 +68,34 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function loadUnassignedSubtasks() {
 
+    //remove the original subtask div if any
+    let origSubtaskDiv = document.querySelectorAll('.subtask')
+    for (let i = 0; i < origSubtaskDiv.length; i++) {
+        origSubtaskDiv[i].remove();
+    }
+
     let div = document.createElement('div');
     let p = document.createElement('p');
-    let ul = document.createElement('ul');
-    MAIN.appendChild(div);
+    let ol = document.createElement('ol');
+
+    let userDiv =  document.querySelectorAll('.user');
+    if (userDiv.length > 1) {
+        div.insertBefore(userDiv);
+    }
+    else {
+        MAIN.appendChild(div);
+    }
+
+
     div.appendChild(p);
-    div.appendChild(ul);
+    div.appendChild(ol);
     div.classList.add("subtask");
     p.innerText = "Unassigned Tasks:";
 
     fetch(UNASSIGNED_URL)
     .then(res => res.json())
     .then(results => {
-       results.data.forEach(displaySubtasks, ul)
+       results.data.forEach(displaySubtasks, ol)
         }).catch(function(error) {
         console.log(error);
     });
@@ -213,7 +228,8 @@ function deleteUserTask(event) {
         }
     })
     .then( function() {
-        event.target.parentElement.remove()
+        event.target.parentElement.remove();
+        loadUnassignedSubtasks();
         }
     )
     .catch(err => console.log(err))
