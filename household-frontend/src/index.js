@@ -47,16 +47,17 @@ function loadUnassignedSubtasks() {
 
   function displaySubtasks(value){
     //   console.log(value.attributes.title)
+
       let li = document.createElement('li');
       li.innerText = value.attributes.title;
       this.appendChild(li)
   
       let formHTML = `
-       <form class="new_subtask" id="new_subtask" action="/subtasks" accept-charset="UTF-8" method="post">
+       <form class="new_subtask" id="new_subtask" action="/user_tasks" accept-charset="UTF-8" method="post">
         <select multiple>
-        <option name="subtask[user_ids][]" value='1' data-user-id="1">Mom</option>
-        <option name="subtask[user_ids][]" value='2' data-user-id="2">Dad</option>
-        <option name="subtask[user_ids][]" value='3' data-user-id="3">Daughter</option>
+        <option  value='1' data-user-id="1">Mom</option>
+        <option  value='2' data-user-id="2">Dad</option>
+        <option  value='3' data-user-id="3">Daughter</option>
         <select>
         <input type="submit" name="commit" value="Assign User(s)" data-disable-with="Create Subtask" />
        </form>
@@ -64,8 +65,8 @@ function loadUnassignedSubtasks() {
    
        li.insertAdjacentHTML('beforeend', formHTML);
        let submitButton = this.querySelector("input[type=submit]");
-        submitButton.setAttribute('data-subtask-id' , value.id); 
-        submitButton.addEventListener('click', assignUserTasks);
+       li.setAttribute('data-subtask-id', value.id)
+       submitButton.addEventListener('click', assignUserTasks);
   
   }
 
@@ -73,6 +74,11 @@ function loadUnassignedSubtasks() {
 
 
 function loadAllUsers() {
+  //remove the original subtask div if any
+  let origUsersDiv = document.querySelectorAll('.user')
+  for (let i = 0; i < origUsersDiv.length; i++) {
+      origUsersDiv[i].remove();
+  }
 
     fetch(USERS_URL)
     .then(res => res.json())
@@ -85,6 +91,8 @@ function loadAllUsers() {
   }
 
 function displayUsers(value) {
+
+  
     // console.log(value.attributes.username)
     let div = document.createElement('div');
     let p = document.createElement('p');
@@ -173,6 +181,7 @@ function deleteUserTask(event) {
     })
     .then( function() {
         event.target.parentElement.remove();
+        loadAllUsers();
         loadUnassignedSubtasks();
         }
     )
@@ -181,10 +190,6 @@ function deleteUserTask(event) {
 }
 
    
-//maybe put this in a different button
-// document.querySelectorAll(".subtask").forEach(el => el.remove())
-// loadUnassignedSubtasks();
-
 function assignUserTasks(event){
     // console.log(event.target.dataset.subtaskId);
     event.preventDefault();
@@ -192,5 +197,35 @@ function assignUserTasks(event){
     let checked = selectList.querySelectorAll(':checked');
     let selectedUsers = [...checked].map(option => option.dataset.userId);
     // alert(selectedUsers);
-}
+
+    // console.log(event.target.parentElement.parentElement.dataset.subtaskId);
+
+    if (selectedUsers.length < 1) {
+        alert("Please select at least one user to assign.")
+    }
+    else {
+
+        fetch(USERTASKS_URL, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+            "user_ids": selectedUsers,
+            "subtask_id": event.target.parentElement.parentElement.dataset.subtaskId
+            })
+        })
+        .then(function() {
+            event.target.parentElement.parentElement.remove();
+            loadAllUsers();
+            loadUnassignedSubtasks();
+            })
+        .catch(err => console.log(err));
+
+    }
+
+
+
+};
 
